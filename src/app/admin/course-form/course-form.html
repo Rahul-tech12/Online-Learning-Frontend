@@ -1,0 +1,13 @@
+<h1>{{courseId? 'Edit Course' : 'Create Course'}}</h1>
+<form [formGroup]="courseForm" (ngSubmit)="submit()">
+    <input type="text" formControlName="title"  placeholder="Title"/>
+    <input type="text" formControlName="description" placeholder="Description"/>
+    <input type="text" formControlName="duration" placeholder="Duration"/>
+    <input type="number" formControlName="price" placeholder="Price"/>
+    <input type="checkbox" formControlName="published" />
+
+    <input type="file" (change)="onFileChange($event)" />
+    <button type="submit">
+        {{courseId? 'Update Course' : 'Create Course'}}
+    </button>
+</form>

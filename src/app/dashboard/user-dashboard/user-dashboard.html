@@ -1,0 +1,51 @@
+<h1>Available Courses</h1>
+<button (click)="loadCourses()">Explore courses</button>
+<button (click)="showMyCourses()">My Courses</button>
+<div class="profile">
+    <button (click)="toggleProfileMenu()">
+        <i class="fa-solid fa-user"></i>
+    </button>
+    <p>{{currentUser?.username}}</p>
+    <div class="profile-menu" *ngIf="showProfileMenu">
+        <button (click)="openProfile()">My Profile</button>
+        <button (click)="logout()">Logout</button>
+    </div>
+</div>
+
+<div *ngIf="!showProfilePage">
+    <div class="user-dashboard">
+    <div class="filters">
+    <input type="text" placeholder="Search by title" [(ngModel)]="searchText" (input)="applyFilters()" />
+    <input type="number" placeholder="Min price" [(ngModel)]="minPrice" (input)="applyFilters()" />
+    <input type="number" placeholder="Max price" [(ngModel)]="maxPrice" (input)="applyFilters()" />
+    <select [(ngModel)]="selectedDuration" (change)="applyFilters()">
+        <option value="">All durations</option>
+        <option value="0-2">0-2 hours</option>
+        <option value="2-5">2-5 hours</option>
+        <option value="5-10">5-10 hours</option>
+        <option value="10-20">10+ hours</option>
+    </select>
+</div>
+
+
+<div class="course-grid">
+    <div class="course" *ngFor="let c of filteredCourses">
+        <img *ngIf="c.imageUrl" [src]="'http://localhost:8080'+c.imageUrl" />
+        <p>{{c.title}}</p>
+        <p>{{c.description}}</p>
+        <p>{{c.duration}} hours</p>
+        <p>₹ {{c.price}}</p>
+        <button *ngIf="!isEnrolled(c.course_id)" (click)="enroll(c.course_id)">Enroll now</button>
+        <button *ngIf="isEnrolled(c.course_id)" disabled>Enrolled</button>
+    </div>
+
+</div>
+</div>
+</div>
+
+<app-user-profile 
+    *ngIf="showProfilePage"
+    [user]=currentUser
+    (close)=closeProfile()
+    (updated)=loadCurrentUser()>
+</app-user-profile>

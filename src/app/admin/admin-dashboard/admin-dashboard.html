@@ -1,0 +1,51 @@
+<div class="admin-dashboard">
+    <h1>Admin Dashboard</h1>
+    <button (click)="showCourseList()">Manage Courses</button>
+    <button (click)="getEnrollmentsPerCourse()">Enrollments per course</button>
+    <div *ngIf="courses">
+        <button [routerLink]="['/admin/add-course']">Add course</button>
+    <table>
+        <tr>
+            <th>Course Id</th>
+            <th>Thumbnail</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Duration</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let c of courses">
+            <td>{{c.course_id}}</td>
+            <td>
+                <img *ngIf="c.imageUrl" [src]="'http://localhost:8080'+c.imageUrl" width="80"/>
+            </td>
+            <td>{{c.title}}</td>
+            <td>{{c.description}}</td>
+            <td>{{c.duration}} hours</td>
+            <td>{{c.price}}</td>
+            <td>
+                <button [routerLink]="['/admin/edit-course/',c.course_id]">Edit</button>
+                <button (click)="deleteCourse(c.course_id)">Delete</button>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div *ngIf="enrollmentPerCourse">
+        <table>
+            <tr>
+                <th>Course Id</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>No of enrollments</th>
+                <th>Published or Not</th>
+            </tr>
+            <tr *ngFor="let e of enrollmentPerCourse">
+                <td>{{e.course_id}}</td>
+                <td>{{e.title}}</td>
+                <td>{{e.price}}</td>
+                <td>{{e.totalEnrollments}}</td>
+                <td>{{e.published ? 'Published' : 'Not Published'}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="auth-page">
+  <div class="auth-card">
+
+    <h2 class="auth-title">Welcome Back</h2>
+    <p class="auth-subtitle">
+      Learn. Grow. Build your future.
+    </p>
+
+    <form [formGroup]="userForm" (ngSubmit)="login()">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="you@example.com" />
+        <small class="error" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+          Enter a valid email
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="••••••••" />
+        <small class="error" *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid">
+          Password is required
+        </small>
+      </div>
+
+      <button type="submit" class="primary-btn" [disabled]="userForm.invalid">
+        Login
+      </button>
+
+      <p class="auth-footer">
+        Don’t have an account?
+        <a routerLink="/signup">Click here to register</a>
+      </p>
+
+    </form>
+  </div>
+</div>

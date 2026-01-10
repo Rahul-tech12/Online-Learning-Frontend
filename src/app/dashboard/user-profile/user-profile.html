@@ -1,0 +1,15 @@
+<div class="profile-page">
+    <label>Username</label>
+    <input [(ngModel)]="user.username" />
+
+    <label>Email</label>
+    <input [value]="user.email" disabled />
+
+    <label>Bio</label>
+    <textarea [(ngModel)]="user.bio" rows="3"></textarea>
+
+    <button (click)="save()">Save</button>
+    <button (click)="close.emit()">Close</button>
+
+    </div>
+
