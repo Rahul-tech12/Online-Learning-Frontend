@@ -30,7 +30,7 @@
 
 <div class="course-grid">
     <div class="course" *ngFor="let c of filteredCourses">
-        <img *ngIf="c.imageUrl" [src]="'http://localhost:8080'+c.imageUrl" />
+        <img *ngIf="c.imageUrl" [src]="'http://localhost:8081'+c.imageUrl" />
         <p>{{c.title}}</p>
         <p>{{c.description}}</p>
         <p>{{c.duration}} hours</p>

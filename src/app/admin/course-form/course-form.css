@@ -27,4 +27,5 @@ form button {
   color: white;
   border-radius: 6px;
   border: none;
+  cursor: pointer;
 }

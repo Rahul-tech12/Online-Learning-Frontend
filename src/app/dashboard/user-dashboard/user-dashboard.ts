@@ -85,6 +85,7 @@ export class UserDashboard {
     this.viewMode='MY';
     this.UserService.getMyCourses().subscribe(res=>{
       this.filteredCourses=res;
+      console.log(res);
     })
   }
 

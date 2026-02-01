@@ -17,7 +17,7 @@
         <tr *ngFor="let c of courses">
             <td>{{c.course_id}}</td>
             <td>
-                <img *ngIf="c.imageUrl" [src]="'http://localhost:8080'+c.imageUrl" width="80"/>
+                <img *ngIf="c.imageUrl" [src]="'http://localhost:8081'+c.imageUrl" width="80"/>
             </td>
             <td>{{c.title}}</td>
             <td>{{c.description}}</td>

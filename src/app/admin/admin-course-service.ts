@@ -9,18 +9,19 @@ export class AdminCourseService {
 
 
   constructor(private http:HttpClient){}
-
+ 
   getAllCourses(){
-    return this.http.get<any[]>(`${environment.apiUrl}`);
+    return this.http.get<any[]>(`${environment.apiUrl}/admin/courses`)
   }
-  
+
   createCourse(data:any,image:File){
+    const token=localStorage.getItem('token');
     const formData=new FormData();
     formData.append(
       'data',new Blob([JSON.stringify(data)],{type:'application/json'})
     );
     formData.append('file',image);
-    return this.http.post(`${environment.apiUrl}`,formData);
+    return this.http.post(`${environment.apiUrl}/admin/courses`,formData);
   }
 
   updateCourse(id:number,data:any,image?:File){
@@ -31,11 +32,11 @@ export class AdminCourseService {
     if(image){
       formData.append('file',image);
     }
-    return this.http.put(`${environment.apiUrl}/${id}`,formData);
+    return this.http.put(`${environment.apiUrl}/admin/courses/${id}`,formData);
   }
 
   deleteCourse(id:number){
-    return this.http.delete(`${environment.apiUrl}/${id}`,{responseType:'text' as 'json'});
+    return this.http.delete(`${environment.apiUrl}/admin/courses/${id}`,{responseType:'text' as 'json'});
   }
 
   getCoursesWithEnrollment(){

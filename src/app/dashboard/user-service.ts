@@ -7,21 +7,20 @@ import { environment } from '../../environments/environments.prod';
 })
 export class UserService {
   
-  private baseUrl="${environment.apiUrl}/courses";
 
   constructor(private http:HttpClient){}
 
   getAllCourses(){
-    return this.http.get<any[]>(`${environment.apiUrl}`);
+    return this.http.get<any[]>(`${environment.apiUrl}/courses`);
   }
 
   enrollCourse(courseId:number){
-    return this.http.post(`${environment.apiUrl}/enrollments/${courseId}`,{},{responseType:'text'});
+    console.log(courseId);
+    return this.http.post(`${environment.apiUrl}/enrollments/${courseId}`,{},{responseType:'text' as 'json'});
   }
 
   getMyCourses(){
-    const token=localStorage.getItem('token');
-    return this.http.get<any[]>(`${environment.apiUrl}/enrollments/my-courses`,{headers:{Authorization:`Bearer ${token}`}});
+    return this.http.get<any[]>(`${environment.apiUrl}/enrollments/my-courses`);
   }
 
   updateProfile(UserInfo:any[]){
@@ -30,7 +29,7 @@ export class UserService {
 
   getProfile(){
     const token=localStorage.getItem('token');
-    return this.http.get<any>(`${environment.apiUrl}/user-profile`,{headers:{Authorization: `Bearer ${token}`}})
+    return this.http.get<any>(`${environment.apiUrl}/user-profile`)
   }
 
 }

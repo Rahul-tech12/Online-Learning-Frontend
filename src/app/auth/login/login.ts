@@ -25,11 +25,13 @@ export class Login {
     this.apiError=null;
     this.authService.login(this.userForm.value).subscribe({
       next:(res)=>{this.authService.saveToken(res);
-        console.log(res);
-        if(this.authService.getRole()==='STUDENT'){
-          this.router.navigate(['/user-dashboard'])
+        const payload=JSON.parse(atob(res.split('.')[1]));
+        const userRole=payload.role;
+        console.log(userRole);
+        if(userRole.toString() == 'ROLE_ADMIN'){
+          this.router.navigate(['/admin']);
         }else{
-          this.router.navigate(['/admin'])
+          this.router.navigate(['/user-dashboard']);
         }
       },
       error:err=>{

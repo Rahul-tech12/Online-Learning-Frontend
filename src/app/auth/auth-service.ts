@@ -11,10 +11,10 @@ export class AuthService {
   constructor(private http:HttpClient){}
 
   signup(data:any){
-    return this.http.post("http://localhost:8080/auth/register",data,{responseType: 'text' as 'json'}); // Adjusted to expect text response
+    return this.http.post(`${environment.apiUrl}/auth/register`,data,{responseType: 'text' as 'json'}); // Adjusted to expect text response
   }
   login(data:any){
-    return this.http.post<any>(`${environment.apiUrl}/login`,data,{responseType:'text' as 'json'});
+    return this.http.post<any>(`${environment.apiUrl}/auth/login`,data,{responseType:'text' as 'json'});
   }
   saveToken(token:string){
     localStorage.setItem('token',token);
