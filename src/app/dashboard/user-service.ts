@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environments.prod';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +28,7 @@ export class UserService {
   }
 
   getProfile(){
-    const token=localStorage.getItem('token');
+    const token=sessionStorage.getItem('token');
     return this.http.get<any>(`${environment.apiUrl}/user-profile`)
   }
 

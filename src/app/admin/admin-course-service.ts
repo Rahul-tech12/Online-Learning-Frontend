@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environments.prod';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class AdminCourseService {
   }
 
   createCourse(data:any,image:File){
-    const token=localStorage.getItem('token');
+    const token=sessionStorage.getItem('token');
     const formData=new FormData();
     formData.append(
       'data',new Blob([JSON.stringify(data)],{type:'application/json'})

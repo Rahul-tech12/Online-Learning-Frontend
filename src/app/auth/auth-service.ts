@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environments.prod';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +17,10 @@ export class AuthService {
     return this.http.post<any>(`${environment.apiUrl}/auth/login`,data,{responseType:'text' as 'json'});
   }
   saveToken(token:string){
-    localStorage.setItem('token',token);
+    sessionStorage.setItem('token',token);
   }
   getToken(){
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
   isLoggedIn():boolean{
     return !!this.getToken();
